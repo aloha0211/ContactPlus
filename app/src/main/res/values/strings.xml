@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Contacts Plus</string>
+
+    <string name="contacts">Contacts</string>
+    <string name="keypad">Keypad</string>
+    <string name="logs">Logs</string>
+    <string name="favorites">Favorites</string>
+</resources>
