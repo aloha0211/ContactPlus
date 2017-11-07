@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvGroupName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:text="A"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_20sdp">
+
+        <ImageView
+            android:id="@+id/ivSelectContact"
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            app:srcCompat="@drawable/ic_check_box_green_24dp"/>
+        <ImageView
+            android:id="@+id/ivContactAvatar"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/ivSelectContact"
+            android:layout_toEndOf="@+id/ivSelectContact"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            app:srcCompat="@mipmap/ic_person"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/ivContactAvatar"
+            android:layout_toEndOf="@+id/ivContactAvatar"
+            android:layout_toLeftOf="@+id/ivFavorite"
+            android:layout_toStartOf="@+id/ivFavorite"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvContactName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Luong Ho"
+                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:maxLines="1"/>
+            <TextView
+                android:id="@+id/tvPhoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="01689984575"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:maxLines="1"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivFavorite"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/line2"
+            android:layout_toStartOf="@+id/line2"
+            android:layout_marginRight="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:src="@mipmap/favorite"/>
+
+        <View
+            android:id="@+id/line2"
+            android:layout_width="@dimen/_2sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/ivCall"
+            android:layout_toStartOf="@+id/ivCall"
+            android:background="@color/grey"
+            android:layout_marginRight="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_6sdp"/>
+
+        <ImageView
+            android:id="@+id/ivCall"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/line1"
+            android:layout_toStartOf="@+id/line1"
+            android:layout_marginRight="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            app:srcCompat="@drawable/ic_call"/>
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="@dimen/_2sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/ivMessage"
+            android:layout_toStartOf="@+id/ivMessage"
+            android:background="@color/grey"
+            android:layout_marginRight="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_6sdp"/>
+
+        <ImageView
+            android:id="@+id/ivMessage"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            app:srcCompat="@drawable/ic_message"/>
+    </RelativeLayout>
+</LinearLayout>

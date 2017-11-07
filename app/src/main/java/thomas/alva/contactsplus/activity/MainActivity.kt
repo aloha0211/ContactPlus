@@ -6,8 +6,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import thomas.alva.contactsplus.R
 import thomas.alva.contactsplus.adapter.TabPagerAdapter
 
-
-
 class MainActivity : AppCompatActivity() {
 
     private val imageResIds = arrayOf(R.mipmap.keypad, R.mipmap.call_log, R.mipmap.favorite, R.mipmap.contact)

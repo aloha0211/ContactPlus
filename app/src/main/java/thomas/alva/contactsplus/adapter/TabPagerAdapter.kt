@@ -29,5 +29,5 @@ class TabPagerAdapter(fm : FragmentManager, context : Context) : FragmentPagerAd
 
     override fun getCount() = PAGE_COUNT
 
-    override fun getPageTitle(position: Int) = tabTitles[position]
+    override fun getPageTitle(position: Int): String = tabTitles[position]
 }
