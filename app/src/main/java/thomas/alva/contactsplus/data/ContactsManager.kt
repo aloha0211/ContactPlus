@@ -3,6 +3,7 @@ package thomas.alva.contactsplus.data
 import android.content.Context
 import android.provider.ContactsContract
 import thomas.alva.contactsplus.model.Contact
+import java.util.*
 
 
 /**
@@ -10,31 +11,33 @@ import thomas.alva.contactsplus.model.Contact
  */
 object ContactsManager {
 
-    fun getPhoneContacts(context: Context): List<Contact> {
+    fun getPhoneContacts(context: Context): MutableList<Contact> {
 
-        val contactList: List<Contact> = arrayListOf()
-        val cr = context.contentResolver
-        val projection = arrayOf(ContactsContract.RawContacts.ACCOUNT_TYPE, ContactsContract.Contacts._ID, ContactsContract.Contacts.DISPLAY_NAME)
-        val cur = cr.query(ContactsContract.RawContacts.CONTENT_URI,
-                projection, null, null, null)
-
-        if (cur?.count ?: 0 > 0) {
-            while (cur != null && cur.moveToNext()) {
-                val id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID))
-                val name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
-                val type = cur.getString(cur.getColumnIndex(ContactsContract.RawContacts.ACCOUNT_TYPE))
-                var phoneNo = ""
-                val pCur = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
-                        ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
-                        arrayOf(id), null)
-                while (pCur!!.moveToNext()) {
-                    phoneNo = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
-                }
-                contactList.plus(Contact(id, name, phoneNo, type))
-                pCur.close()
+        val contacts: MutableList<Contact> = mutableListOf()
+        val cursor = context.contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null)
+//        val photoIdIdx = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_ID)
+        cursor.moveToFirst()
+        do {
+            val idContact = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone._ID))
+            val name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
+            val phoneNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+            val type = cursor.getString(cursor.getColumnIndex(ContactsContract.RawContacts.ACCOUNT_TYPE))
+            contacts.add(Contact(idContact, name, phoneNumber, type))
+            //...
+        } while (cursor.moveToNext())
+        cursor.close()
+        Collections.sort(contacts)
+        var groupValue = ""
+        for(i: Int in 0 until contacts.size) {
+            val contact = contacts[i]
+            val groupName = contact.name?.substring(0, 1)
+            if (groupName != groupValue) {
+                contact.groupName = groupName
+                groupValue = groupName!!
+                if (i > 0)
+                    contacts[i - 1].isEndGroup = true
             }
         }
-        cur?.close()
-        return contactList
+        return contacts
     }
 }

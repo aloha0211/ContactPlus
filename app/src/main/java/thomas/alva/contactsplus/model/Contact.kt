@@ -9,7 +9,9 @@ import thomas.alva.contactsplus.util.Constant
  */
 class Contact(var id: String? = "", var name: String? = "", var number: String? = "", var type: String? = Constant.ACCOUNT_TYPE_PHONE) : Comparable<Contact>, Parcelable {
 
-    var groupName: String? = name?.substring(0, 1)
+    var groupName: String? = ""
+
+    var isEndGroup: Boolean = false
 
     constructor(parcel: Parcel) : this() {
         id = parcel.readValue(String::class.java.classLoader) as String
