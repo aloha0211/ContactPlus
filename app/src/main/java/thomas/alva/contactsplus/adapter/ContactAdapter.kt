@@ -28,7 +28,7 @@ class ContactAdapter(private val context: Context, private val contactList: Muta
             holder?.tvGroupName?.visibility = View.GONE
         }
 
-        if (contact.groupName == null) {
+        if (contact.isEndGroup) {
             holder?.lineHorizontal?.visibility = View.VISIBLE
         } else {
             holder?.lineHorizontal?.visibility = View.GONE
