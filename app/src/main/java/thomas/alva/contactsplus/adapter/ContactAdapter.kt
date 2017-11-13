@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import org.jetbrains.anko.imageURI
 import thomas.alva.contactsplus.R
 import thomas.alva.contactsplus.model.Contact
+import thomas.alva.contactsplus.util.Constant
 
 /**
  * Created by Administrator on 30/10/2017.
@@ -34,11 +36,17 @@ class ContactAdapter(private val context: Context, private val contactList: Muta
             holder?.lineHorizontal?.visibility = View.GONE
         }
 
-//        when (contact.type) {
-//            Constant.ACCOUNT_TYPE_PHONE -> holder?.ivContactAvatar?.setImageResource(R.drawable.ic_device)
-//            Constant.ACCOUNT_TYPE_SIM -> holder?.ivContactAvatar?.setImageResource(R.drawable.ic_sim1)
-//            Constant.ACCOUNT_TYPE_SIM2 -> holder?.ivContactAvatar?.setImageResource(R.drawable.ic_sim2)
-//        }
+        if (contact.photoUri == null) {
+            holder?.ivContactAvatar?.setImageResource(R.mipmap.ic_person)
+        } else {
+            holder?.ivContactAvatar?.imageURI = contact.photoUri
+        }
+
+        when (contact.type) {
+            Constant.ACCOUNT_TYPE_PHONE -> holder?.ivSimType?.setImageResource(R.drawable.ic_device)
+            Constant.ACCOUNT_TYPE_SIM -> holder?.ivSimType?.setImageResource(R.drawable.ic_sim1)
+            Constant.ACCOUNT_TYPE_SIM2 -> holder?.ivSimType?.setImageResource(R.drawable.ic_sim2)
+        }
     }
 
     override fun getItemCount(): Int = contactList.size
@@ -57,5 +65,6 @@ class ContactAdapter(private val context: Context, private val contactList: Muta
         val ivMessage: ImageView = itemView.findViewById(R.id.ivMessage)
         val ivSelectContact: ImageView = itemView.findViewById(R.id.ivSelectContact)
         val lineHorizontal: View = itemView.findViewById(R.id.lineHorizontal)
+        val ivSimType: ImageView = itemView.findViewById(R.id.ivSimType)
     }
 }

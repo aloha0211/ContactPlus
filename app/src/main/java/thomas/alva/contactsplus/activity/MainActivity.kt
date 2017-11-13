@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
 
         tabPagerAdapter = TabPagerAdapter(supportFragmentManager, this)
         viewPager.adapter = tabPagerAdapter
+        viewPager.setPagingEnabled(false);
         viewPager.addOnPageChangeListener(this)
         tabLayout.setupWithViewPager(viewPager)
         for (i in 0 until tabLayout.tabCount) {

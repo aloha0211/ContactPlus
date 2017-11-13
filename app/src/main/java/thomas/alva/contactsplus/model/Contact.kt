@@ -1,5 +1,6 @@
 package thomas.alva.contactsplus.model
 
+import android.net.Uri
 import android.os.Parcel
 import android.os.Parcelable
 import thomas.alva.contactsplus.util.Constant
@@ -7,7 +8,7 @@ import thomas.alva.contactsplus.util.Constant
 /**
  * Created by Administrator on 30/10/2017.
  */
-class Contact(var id: String? = "", var name: String? = "", var number: String? = "", var type: String? = Constant.ACCOUNT_TYPE_PHONE) : Comparable<Contact>, Parcelable {
+class Contact(var id: String? = "", var name: String? = "", var number: String? = "", var type: String? = Constant.ACCOUNT_TYPE_PHONE, var photoUri: Uri? = null) : Comparable<Contact>, Parcelable {
 
     var groupName: String? = ""
 

@@ -4,6 +4,7 @@ import android.content.Context
 import android.provider.ContactsContract
 import thomas.alva.contactsplus.model.Contact
 import java.util.*
+import android.content.ContentUris
 
 
 /**
@@ -18,12 +19,13 @@ object ContactsManager {
 //        val photoIdIdx = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_ID)
         cursor.moveToFirst()
         do {
-            val idContact = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone._ID))
+            val contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone._ID))
             val name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
             val phoneNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
             val type = cursor.getString(cursor.getColumnIndex(ContactsContract.RawContacts.ACCOUNT_TYPE))
-            contacts.add(Contact(idContact, name, phoneNumber, type))
-            //...
+            val photoUri = ContentUris.withAppendedId(ContactsContract.Data.CONTENT_URI, java.lang.Long.parseLong(contactId))
+            contacts.add(Contact(contactId, name, phoneNumber, type, photoUri))
+
         } while (cursor.moveToNext())
         cursor.close()
         Collections.sort(contacts)
